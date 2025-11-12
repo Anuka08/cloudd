@@ -57,17 +57,17 @@ public class GUI extends javax.swing.JFrame {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {"Accuracy", null, null, null, null},
-                {"Detection Rate", null, null, null, null},
-                {"FPR", null, null, null, null}
+                {"Accuracy", null, null, null, null, null},
+                {"Detection Rate", null, null, null, null, null},
+                {"FPR", null, null, null, null, null}
             },
             new String [] {
-                "", "FCM-ANN ", "ANFIS", "SVM", "Proposed SFDO-based DeepRNN"
+                "", "FCM-ANN ", "ANFIS", "SVM", "SFDO-DRNN", "H-GWJA-DRNN"
             }
         ));
         jScrollPane1.setViewportView(jTable1);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 270, 540, 80));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 270, 680, 80));
 
         jLabel1.setText("Group size");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 50, 93, 28));
@@ -121,17 +121,20 @@ public class GUI extends javax.swing.JFrame {
         dcd1.setValue(Accuracy.get(0),"Accuracy","FCM-ANN ");
         dcd1.setValue(Accuracy.get(1),"Accuracy","ANFIS"); 
         dcd1.setValue(Accuracy.get(2),"Accuracy","SVM");
-        dcd1.setValue(Accuracy.get(3),"Accuracy","Proposed SFDO-based Deep RNN");
+        dcd1.setValue(Accuracy.get(3),"Accuracy","SFDO-DRNN");
+        dcd1.setValue(Accuracy.get(4),"Accuracy","H-GWJA-DRNN (Proposed)");
         
         dcd2.setValue(Detection_Rate.get(0),"Detection Rate","FCM-ANN ");
         dcd2.setValue(Detection_Rate.get(1),"Detection Rate","ANFIS"); 
         dcd2.setValue(Detection_Rate.get(2),"Detection Rate","SVM");
-        dcd2.setValue(Detection_Rate.get(3),"Detection Rate","Proposed SFDO-based Deep RNN");
+        dcd2.setValue(Detection_Rate.get(3),"Detection Rate","SFDO-DRNN");
+        dcd2.setValue(Detection_Rate.get(4),"Detection Rate","H-GWJA-DRNN (Proposed)");
         
         dcd3.setValue(FPR.get(0),"FPR","FCM-ANN ");
         dcd3.setValue(FPR.get(1),"FPR","ANFIS"); 
         dcd3.setValue(FPR.get(2),"FPR","SVM");
-        dcd3.setValue(FPR.get(3),"FPR","Proposed SFDO-based Deep RNN");
+        dcd3.setValue(FPR.get(3),"FPR","SFDO-DRNN");
+        dcd3.setValue(FPR.get(4),"FPR","H-GWJA-DRNN (Proposed)");
                 
     JFreeChart jchart1 = ChartFactory.createBarChart("", "", "Accuracy", dcd1, PlotOrientation.VERTICAL,false, true, false);
     JFreeChart jchart2 = ChartFactory.createBarChart("", "", "Detection Rate", dcd2, PlotOrientation.VERTICAL,false, true, false); 
