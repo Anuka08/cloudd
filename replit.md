@@ -23,21 +23,27 @@ Preferred communication style: Simple, everyday language.
 3. **Feature Grouping**: K-Means clustering replaces older FCM (Fuzzy C-Means) approach
 4. **Rationale**: This pipeline reduces computational overhead while maintaining detection accuracy for big data scenarios
 
-### Optimization Layer
+### Optimization Layer - **COMPARISON MODE ACTIVE**
+- **System runs BOTH algorithms for performance comparison**:
+  1. **SFDO (Original)**: Sailfish-Dolphin Optimizer with 2 agents, 10 iterations
+  2. **H-GWJA (Proposed)**: Hybrid Grey Wolf + JAYA Algorithm with 10 agents, 15 iterations
+
 - **H-GWJA Hybrid Algorithm**: Combines Grey Wolf Optimizer (60%) with JAYA algorithm (40%)
   - **GWO Component**: Hierarchical hunting strategy with Alpha/Beta/Delta wolf roles for exploitation
   - **JAYA Component**: Moves solutions toward global best and away from worst solutions
-  - **Population**: 10 agents, 15 iterations maximum
-  - **Replaced SFDO**: Original Sailfish-Dolphin Optimizer had only 2 agents and 10 iterations (insufficient exploration)
+  - **Population**: 10 agents, 15 iterations maximum (vs SFDO: 2 agents, 10 iterations)
   - **Fitness Function**: Evaluates solutions using DRNN loss/accuracy metrics
   - **Implementation Files**: `HGWJA_update.java`, `HGWJA_fitness.java` (November 2025)
-  - **SFDO Code**: Preserved in comments in `Feature_fusion.java` for easy rollback if needed
+  - **Both algorithms enabled** in `Feature_fusion.java` - runs sequentially for side-by-side comparison
 
-### Machine Learning Classifiers
-- **DRNN (Deep Recurrent Neural Network)**: Primary classifier for intrusion detection
-- **SVM (Support Vector Machine)**: Alternative classifier for comparison
-- **ANFIS (Adaptive Neuro-Fuzzy Inference System)**: Hybrid approach combining neural networks and fuzzy logic
-- **FCM_ANN**: Fuzzy C-Means with Artificial Neural Network integration
+### Machine Learning Classifiers (5 Total)
+1. **FCM_ANN**: Fuzzy C-Means with Artificial Neural Network integration
+2. **ANFIS**: Adaptive Neuro-Fuzzy Inference System (hybrid neural networks + fuzzy logic)
+3. **SVM**: Support Vector Machine classifier
+4. **SFDO-DRNN**: Original Sailfish-Dolphin Optimizer + Deep Recurrent Neural Network
+5. **H-GWJA-DRNN (Proposed)**: Hybrid Grey Wolf-JAYA + Deep Recurrent Neural Network
+
+**Output Display**: GUI table and charts show all 5 algorithms side-by-side for direct performance comparison
 
 ## Cloud Simulation Infrastructure
 
