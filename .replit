@@ -1,0 +1,30 @@
+modules = ["java-graalvm22.3", "bash"]
+[agent]
+expertMode = true
+
+[nix]
+channel = "stable-25_05"
+packages = ["fontconfig", "dejavu_fonts", "xorg.libX11", "xorg.libXext", "xorg.libXrender", "xorg.libXtst"]
+
+[workflows]
+runButton = "Project"
+
+[[workflows.workflow]]
+name = "Project"
+mode = "parallel"
+author = "agent"
+
+[[workflows.workflow.tasks]]
+task = "workflow.run"
+args = "run"
+
+[[workflows.workflow]]
+name = "run"
+author = "agent"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "cd 74216 && ./compile.sh && ./run.sh"
+
+[workflows.workflow.metadata]
+outputType = "vnc"

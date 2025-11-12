@@ -1,0 +1,13 @@
+SVM.Solver$SolutionInfo
+SVM.Solver
+SVM.SVC_Q
+SVM.svm$decision_function
+SVM.QMatrix
+SVM.Kernel
+SVM.svm$1
+SVM.Cache
+SVM.SVR_Q
+SVM.ONE_CLASS_Q
+SVM.Solver_NU
+SVM.Cache$head_t
+SVM.svm
