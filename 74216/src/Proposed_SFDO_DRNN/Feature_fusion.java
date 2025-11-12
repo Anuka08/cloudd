@@ -27,8 +27,14 @@ public class Feature_fusion {
         Code.write.write_double_csv(Feature, "Processed\\Fused_Feature.csv");
         System.out.println("\nFinal features saved to Processed/Fused_Feature.csv");
         
-        System.out.println("\nIntrusion detection by SFDO based DRNN..");
-        SailFish_update.optimization(Feature, target);
+        // ============= ALGORITHM REPLACEMENT =============
+        // SFDO Algorithm (Original - Commented Out)
+        // System.out.println("\nIntrusion detection by SFDO based DRNN..");
+        // SailFish_update.optimization(Feature, target);
+        
+        // H-GWJA Algorithm (Hybrid Grey Wolf and JAYA - New Implementation)
+        System.out.println("\nIntrusion detection by H-GWJA (Hybrid Grey Wolf + JAYA) based DRNN..");
+        HGWJA_update.optimization(Feature, target);
     }
     
     // Feature fusion
