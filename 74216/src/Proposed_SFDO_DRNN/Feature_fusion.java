@@ -3,6 +3,7 @@ package Proposed_SFDO_DRNN;
 import static Code.Run.Data;
 import static Code.Run.target;
 import static Code.Run.Feature;
+import static Code.Run.Feature_HGWJA;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -14,29 +15,53 @@ public class Feature_fusion {
         System.out.println("\nReading data..");
         Code.read.dataset();
         
-        // NEW PIPELINE: Replace FCM with Feature Selection + Embedding + K-Means Grouping
-        System.out.println("\n=== NEW FEATURE PROCESSING PIPELINE ===");
-        System.out.println("Replacing FCM-based feature grouping with:");
+        // ============= DUAL FEATURE PROCESSING PIPELINE =============
+        System.out.println("\n=== DUAL PIPELINE ARCHITECTURE ===");
+        System.out.println("Pipeline 1: FCM-based features for FCM-ANN, ANFIS, SVM, SFDO-DRNN");
+        System.out.println("Pipeline 2: Advanced features (Autoencoder + K-Means) for H-GWJA-DRNN");
+        System.out.println("=====================================================\n");
+        
+        // PIPELINE 1: Original FCM-based feature processing for first 4 algorithms
+        System.out.println("\n[Pipeline 1] Processing FCM-based features...");
+        ArrayList<Integer> Clustered = Code.FCM.group(Data, n_cluster);
+        
+        Feature = new ArrayList<>();
+        for (int i = 0; i < Data.size(); i++) {
+            ArrayList<Double> feature = new ArrayList();
+            for (int j = 0; j < n_cluster; j++) {
+                double ai = (double) n_cluster;
+                double fused_data = fuse_feature(Data.get(i), Clustered, j+1, ai);
+                feature.add(fused_data);
+            }
+            Feature.add(feature);
+        }
+        
+        Code.write.write_double_csv(Feature, "Processed\\Fused_Feature_FCM.csv");
+        System.out.println("FCM-based features saved to Processed/Fused_Feature_FCM.csv");
+        System.out.println("Features for algorithms: FCM-ANN, ANFIS, SVM, SFDO-DRNN");
+        
+        // PIPELINE 2: Advanced feature processing ONLY for H-GWJA
+        System.out.println("\n[Pipeline 2] Processing Advanced features for H-GWJA...");
         System.out.println("  1. Feature Selection (Mutual Information + RFE)");
         System.out.println("  2. Feature Embedding (Autoencoder)");
         System.out.println("  3. Feature Grouping (K-Means clustering)");
         
-        Feature = Code.FeaturePipeline.processFeatures(Data, target);
+        Feature_HGWJA = Code.FeaturePipeline.processFeatures(Data, target);
         
-        // Save the final combined features
-        Code.write.write_double_csv(Feature, "Processed\\Fused_Feature.csv");
-        System.out.println("\nFinal features saved to Processed/Fused_Feature.csv");
+        Code.write.write_double_csv(Feature_HGWJA, "Processed\\Fused_Feature_HGWJA.csv");
+        System.out.println("\nAdvanced features saved to Processed/Fused_Feature_HGWJA.csv");
+        System.out.println("Features for algorithm: H-GWJA-DRNN (Proposed)\n");
         
-        // ============= ALGORITHM COMPARISON MODE =============
-        // Run BOTH algorithms to compare performance
+        // ============= ALGORITHM EXECUTION =============
+        // Run BOTH optimization algorithms with their respective features
         
-        // 1. SFDO Algorithm (Original)
-        System.out.println("\n[1/2] Running SFDO-based DRNN for comparison...");
+        // 1. SFDO Algorithm with FCM features (for comparison)
+        System.out.println("\n[1/2] Running SFDO-based DRNN with FCM features...");
         SailFish_update.optimization(Feature, target);
         
-        // 2. H-GWJA Algorithm (Hybrid Grey Wolf and JAYA - New Implementation)
-        System.out.println("\n[2/2] Running H-GWJA (Hybrid Grey Wolf + JAYA) based DRNN...");
-        HGWJA_update.optimization(Feature, target);
+        // 2. H-GWJA Algorithm with Advanced features (PROPOSED METHOD)
+        System.out.println("\n[2/2] Running H-GWJA (Hybrid Grey Wolf + JAYA) with Advanced features...");
+        HGWJA_update.optimization(Feature_HGWJA, target);
     }
     
     // Feature fusion

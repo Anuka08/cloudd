@@ -13,10 +13,8 @@ public class FCM {
     public static ArrayList<ArrayList<Double>> U = new ArrayList<>();
     public static ArrayList<Double> obj_fcn = new ArrayList();        //Array for objective function
     
-    // FCM (Fuzzy C-Means) - DISABLED
-    // This FCM clustering has been replaced with K-Means clustering in FeatureGrouping.java
-    // The code below is commented out but kept intact for reference
-    /*
+    // FCM (Fuzzy C-Means) - RE-ENABLED for original 4 algorithms
+    // Used by: FCM-ANN, ANFIS, SVM, SFDO-DRNN
     public static ArrayList<Integer> group(ArrayList<ArrayList<Double>> data, int cluster_n) throws IOException {
         data = Code.read.transpose_2(data);
         ArrayList<ArrayList<Double>> U_trans = new ArrayList<>();
@@ -378,5 +376,4 @@ public class FCM {
         }
         return unique;
     }
-    */
 }

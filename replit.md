@@ -2,7 +2,11 @@
 
 This is a cloud computing intrusion detection system that combines machine learning and cloud simulation. The project implements a hybrid optimization algorithm (H-GWJA: Hybrid Grey Wolf and JAYA Algorithm) with Deep Recurrent Neural Networks (DRNN) for network intrusion detection in cloud environments. It uses CloudSim for cloud infrastructure simulation and includes VM load balancing, task scheduling, and feature processing pipelines for big data analysis.
 
-The system processes network traffic data through feature selection, embedding, and grouping stages before applying machine learning classifiers (DRNN, SVM, ANFIS) to detect intrusions. It was originally developed in NetBeans 8.1 for Windows 10 with Java 8.
+The system features a **DUAL PIPELINE ARCHITECTURE**:
+- **Pipeline 1 (FCM-based)**: Used by FCM-ANN, ANFIS, SVM, and SFDO-DRNN algorithms
+- **Pipeline 2 (Advanced)**: Uses Autoencoder + Mutual Information + K-Means clustering, exclusively for H-GWJA-DRNN (proposed algorithm)
+
+The system processes network traffic data through different feature processing stages before applying machine learning classifiers to detect intrusions. It was originally developed in NetBeans 8.1 for Windows 10 with Java 8.
 
 # User Preferences
 

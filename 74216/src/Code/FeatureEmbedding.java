@@ -7,8 +7,9 @@ public class FeatureEmbedding {
     
     // Feature Embedding: Simple Autoencoder with layers [64, 32, 16 bottleneck, 32, 64]
     // Using ReLU activations, MSE loss, Adam-like optimizer (simplified)
-    private static double learningRate = 0.001;
-    private static int numEpochs = 50;
+    // OPTIMIZED for faster training
+    private static double learningRate = 0.005; // Increased from 0.001 for faster convergence
+    private static int numEpochs = 20; // Reduced from 50 to speed up training (still effective)
     
     // Autoencoder Embedding: Train on selected features and output bottleneck layer as embeddings
     public static ArrayList<ArrayList<Double>> applyAutoencoderEmbedding(ArrayList<ArrayList<Double>> data, 

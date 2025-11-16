@@ -20,7 +20,8 @@ public class Run {
     public static ArrayList<Double> FPR = new ArrayList();              // FPR
     public static ArrayList<ArrayList<Double>> Data = new ArrayList<>();    // Data
     public static ArrayList<Double> target = new ArrayList();               // target
-    public static ArrayList<ArrayList<Double>> Feature = new ArrayList<>(); // Fused Feature
+    public static ArrayList<ArrayList<Double>> Feature = new ArrayList<>(); // Fused Feature (FCM-based for first 4 algorithms)
+    public static ArrayList<ArrayList<Double>> Feature_HGWJA = new ArrayList<>(); // Advanced Features (for H-GWJA only)
     
     public static void callmain() throws IOException, Exception {
         
