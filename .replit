@@ -22,9 +22,9 @@ args = "run"
 name = "run"
 author = "agent"
 
+[workflows.workflow.metadata]
+outputType = "vnc"
+
 [[workflows.workflow.tasks]]
 task = "shell.exec"
 args = "cd 74216 && ./compile.sh && ./run.sh"
-
-[workflows.workflow.metadata]
-outputType = "vnc"
